@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form action="/myaction.php" name='myform'  onsubmit="return validateForm()" method="post">
+         <div id="name">
+             Name:<input type="text" name="fname" required ><b><span class="formerror"></span></b>
+         </div><br>
+         <div id="email">
+             Email:<input type="email" name="fmail" required ><b><span class="formerror"></span></b>
+         </div><br>
+         <div id="phone">
+             Phone No.:<input type="phone" name="fphone" required ><b><span class="formerror"></span></b>
+         </div><br>
+         <div id="date">
+             Date Of Birth:<input type="date" name="fdate" required ><b><span class="formerror"></span></b>
+         </div><br>
+         <div id="address">
+             Address:<br></Address: col = "12"   br><textarea  required></textarea><b><span class="formerror"></span></b>  
+         </div><br>
+         <div>
+            State:<input type="text" name="fstate" required><span>City:<input type="text" name="fcity" required><span>Zip:<input type="number" name="fcity" required></span>
+         </div><br>
+         <div>
+         <input type="submit">
+         </div>
+    </form>
+</body>
+<script>
+function clearerrors(){
+    errors = document.getElementsByClassName("formerror")
+    for(let item of errors)
+    {
+        item.innerHTML = "";
+    }
+}
+function seterror(id,error){
+   element = document.getElementById(id);
+   element.getElementsByClassName("formerror")[0].innerHTML = error;
+
+}
+
+function validateForm(){
+    var returnval = true;
+    clearerrors()
+
+
+    var name = document.forms['myform']["fname"].value;
+    if(name.length<5){
+        seterror("name"," *length is too short");
+        returnval = false;
+    }
+
+    var email = document.forms['myform']["fmail"].value;
+    if(email.length>15){
+        seterror("email"," * email length is too long");
+        returnval = false;
+    
+    }
+    var phone = document.forms['myform']["fphone"].value;
+    if(phone.length!=10){
+        seterror("phone"," * phone no.should be of 10 digits");
+        returnval = false;
+    
+    }
+
+    return returnval;
+}
+
+</script>
+</html>
